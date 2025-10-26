@@ -1,5 +1,7 @@
 # SwapMe
 
+SWAPALL
+
 Proyecto inicial para gestionar "SwapMe": documentación, versionado, servicio y página.
 
 ## Objetivo
