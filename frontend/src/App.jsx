@@ -1,10 +1,19 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 
 function App() {
   const [count, setCount] = useState(0)
+  // Estado de salud del backend
+  const [health, setHealth] = useState(null)
+
+  useEffect(() => {
+    fetch('/api/health')
+      .then((res) => res.json())
+      .then((data) => setHealth(data))
+      .catch(() => setHealth({ status: 'error' }))
+  }, [])
 
   return (
     <>
@@ -23,6 +32,9 @@ function App() {
         </button>
         <p>
           Edit <code>src/App.jsx</code> and save to test HMR
+        </p>
+        <p>
+          Estado del servicio: {health ? health.status : 'cargando...'}
         </p>
       </div>
       <p className="read-the-docs">
